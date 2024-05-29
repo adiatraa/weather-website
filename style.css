@@ -8,6 +8,19 @@
     font-family: "Outfit", sans-serif;
 }
 
+.main-section{
+    display: flex;
+}
+
+.left-side{
+    width: 25%;
+    min-height: 100vh;
+}
+
+.right-side{
+    width: 75%;
+}
+
 header{
     display: flex;
     justify-content: end;
@@ -15,15 +28,12 @@ header{
 }
 
 nav{
-    z-index: 1030;
-    top: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: white;
     padding: 24px 32px;
     box-shadow: 0px 14px 88px 0px rgba(0,0,0,0.1);
-    margin-left: 370px;
 }
 
 .nav-my-loc{
@@ -143,12 +153,10 @@ svg{
 }
 
 .sidebar{
-    position: fixed;
-    height: 100vh;
-    width: 370px;
+    padding: 30px 0;
     box-shadow: 0px 14px 88px 0px rgba(0,0,0,0.1);
-    overflow-y: scroll;
-    overflow-x: hidden;
+    width: 100%;
+    min-height: 100%;
 }
 
 .search-bar{
@@ -160,8 +168,8 @@ svg{
     background-color: #F9FAFC;
     border-radius: 61px;
     border: 1px solid #E2E2E4;
-    top: 10px;
-    margin: 30px auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search-icon{
@@ -183,6 +191,7 @@ svg{
 }
 
 .sidebar-weather-top{
+    padding-top: 26px;
     margin: 0 18%;
 }
 
@@ -200,9 +209,10 @@ svg{
 }
 
 .line{
-    margin: 4% 12%;
+    padding: 5px;
+    margin: 4% auto;
     border-top: 0.1px solid #8e8e8e77;
-    width: 280px;
+    width: 80%;
 }
 
 .sidebar-date{
@@ -275,7 +285,6 @@ svg{
 }
 
 .main{
-    margin-left: 370px;
     padding-top: 96px; 
     padding-left: 0;
 }
@@ -283,6 +292,7 @@ svg{
 .row1{
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    margin-bottom: -40px;
 }
 
 .other-city{
@@ -409,6 +419,127 @@ svg{
     font-weight: 600;
 }
 
+.weather-week-container {
+    margin-top: -44px;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    padding: 47px 0;
+}
+
+.weather-today, .weather-past {
+    flex: 0 0 auto;
+    margin: 1% 1% 2% 0;
+}
+
+.weather-week{
+    display: flex;
+    align-items: center;
+}
+
+.weather-week-title{
+    padding: 4% 3% 1% 2%;
+}
+
+.weather-week-title h2{
+    font-size: 24px;
+    font-weight: 600;
+
+}
+
+.weather-today{
+    height: 202px;
+    width: 355px;
+    margin: 1% 0 2% 2%;
+    background-color: white;
+    box-shadow: 0px 14px 88px 0px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.weather-today-side{
+    display: flex;
+    align-items: center;
+    gap: 42px;
+    margin-top: 14px;
+    margin-left: 10px;
+}
+
+.weather-today-status{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.weather-today-status p{
+    font-weight: 300;
+    color: #939395;
+}
+
+.weather-today-status i{
+    font-size: 12px;
+    color: #1977F1;
+}
+
+.today-humidity{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.today-wind{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.weather-past{
+    height: 202px;
+    width: 182px;
+    margin: 1% 0 2% 2%;
+    background-color: white;
+    box-shadow: 0px 14px 88px 0px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.weather-past-side{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.weather-image-past{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-past-status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.weather-past-status h2{
+    font-size: 20px;
+}
+
+.weather-past-status p{
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.blank{
+    height: 202px;
+    width: 20px;
+    margin: 1% 0 2% 2%;
+    padding: 1%;
+}
+
 /* Col Span */
 .col-span-6{
     grid-column: span 6 / span 6;
@@ -417,3 +548,9 @@ svg{
 .col-span-5{
     grid-column: span 5 / span 5;
 }
+
+@media only screen and (max-width: 600px) {
+    line{
+        width: 260px;
+    }
+  }

@@ -12,141 +12,252 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-left-side">
-                <div class="nav-my-loc">
-                    <p>My</p>
-                    <p>Location</p>
+    <div class="main-section">
+        <div class="left-side">
+            <div class="sidebar">
+                <div class="search-bar">
+                    <div class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="search-input">
+                        <input type="text" class="input" placeholder="Search Places.....">
+                    </div>
                 </div>
-                <div class="nav-map-icon">
-                    <i class="fa-solid fa-location-dot"></i>
+                <div class="sidebar-weather-top">
+                    <img src="images/cloudy.png" alt="">
+                    <p>18°C</p>
                 </div>
-                <div class="nav-loc-name">
-                    <h2>Surabaya</h2>
-                    <p>Surabaya, Jawa Timur</p>
+                <div class="line"></div>
+                <div class="sidebar-date">
+                    <p>Date Today</p>
+                    <div class="sidebar-day">
+                        <h2>Sunday</h2>
+                        <p>15.30</p>
+                    </div>
+                </div>
+                <div class="sidebar-detail-weather">
+                    <p>Detail Weather</p>
+                    <div class="weather-status">
+                        <i class="fa-solid fa-cloud"></i>
+                        <p>Mostly Cloudly</p>
+                    </div>
+                    <div class="weather-status">
+                        <i class="fa-solid fa-water"></i>
+                        <p>Humidity - 77%</p>
+                    </div>
+                    <div class="weather-status">
+                        <i class="fa-solid fa-wind"></i>
+                        <p>Wind - 6km/h</p>
+                    </div>
                 </div>
             </div>
-            <div class="nav-right-side">
-                <div class="toggle-display">
-                    <label for="toggle">
-                        <div class="svg-wrap">
-                            <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-                            </svg>
-                            <!-- <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                                    clip-rule="evenodd" />
-                            </svg> -->
+        </div>
+        <div class="right-side">
+            <header>
+                <nav>
+                    <div class="nav-left-side">
+                        <div class="nav-my-loc">
+                            <p>My</p>
+                            <p>Location</p>
+                        </div>
+                        <div class="nav-map-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="nav-loc-name">
+                            <h2>Surabaya</h2>
+                            <p>Surabaya, Jawa Timur</p>
+                        </div>
+                    </div>
+                    <div class="nav-right-side">
+                        <div class="toggle-display">
+                            <label for="toggle">
+                                <div class="svg-wrap">
+                                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                                    </svg>
+                                    <!-- <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                                            clip-rule="evenodd" />
+                                    </svg> -->
 
+                                </div>
+                            </label>
                         </div>
-                    </label>
+                        <div class="nav-username">
+                            <h2>Adiat Rahman</h2>
+                            <p>Software Developer</p>
+                        </div>
+                        <img src="images/user.jpeg" alt="" class="nav-user-image">
+                        <i class="fa-solid fa-chevron-down" style="cursor: pointer;"></i>
+                    </div>
+                </nav>
+            </header>
+            <section class="main">
+                <div class="row1">
+                    <div class="other-city col-span-6">
+                        <div class="city-row1">
+                            <p class="title-card">Other Large Cities</p>
+                            <div class="change-city-button">
+                                <a href="#" class="arrowUp">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </a>
+                                <a href="#" class="arrowDown">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="city-display">
+                            <img src="images/cloudy.png" alt="" height="60px" width="60px">
+                            <div class="city-name">
+                                <h2>Malang</h2>
+                                <p>Malang, Jawa Timur</p>
+                            </div>
+                            <div class="city-weather">
+                                <h2>18°C</h2>
+                                <div class="city-wind">
+                                    <i class="fa-solid fa-wind"></i>
+                                    <p>Wind - 6 km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-display">
+                            <img src="images/rainy.png" alt="" height="60px" width="60px">
+                            <div class="city-name">
+                                <h2>Sidoarjo</h2>
+                                <p>Sidoarjo, Jawa Timur</p>
+                            </div>
+                            <div class="city-weather">
+                                <h2>22°C</h2>
+                                <div class="city-wind">
+                                    <i class="fa-solid fa-wind"></i>
+                                    <p>Wind - 15 km/h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-weather col-span-5">
+                        <div class="report-row1">
+                            <i class="fa-regular fa-comment" style="color: white; font-size: 24px;"></i>
+                            <p>Wrong weather forecast?</p>
+                        </div>
+                        <div class="report-row2">
+                            <p>If the weather report in your city is inaccurate, you can report your current weather
+                                conditions
+                                to us. <br> </p>
+                            <p>More data means more accurate forecasts. Your observations help improve forecasts.</p>
+                        </div>
+                        <a href="#">Report the weather</a>
+                    </div>
                 </div>
-                <div class="nav-username">
-                    <h2>Adiat Rahman</h2>
-                    <p>Software Developer</p>
+                <div class="weather-week-title">
+                    <h2>Week Weather in 7 Days</h2>
                 </div>
-                <img src="images/user.jpeg" alt="" class="nav-user-image">
-                <i class="fa-solid fa-chevron-down" style="cursor: pointer;"></i>
-            </div>
-        </nav>
-    </header>
-    <div class="sidebar">
-        <div class="search-bar">
-            <div class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="search-input">
-                <input type="text" class="input" placeholder="Search Places.....">
-            </div>
+                <div class="weather-week-container">
+                    
+                    <div class="weather-week">
+                        <div class="weather-today">
+                            <p>Today</p>
+                            <div class="weather-today-side">
+                                <img src="images/cloudy.png" alt="" height="100px" width="110px">
+                                <div class="weather-today-status">
+                                    <h2>18°C</h2>
+                                    <p>Mostly Cloudy</p>
+                                    <div class="today-humidity">
+                                        <i class="fa-solid fa-water"></i>
+                                        <p>77%</p>
+                                    </div>
+                                    <div class="today-wind">
+                                        <i class="fa-solid fa-wind"></i>
+                                        <p>Wind - 6 km/h</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Mon 12</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/stormy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>20°C</h2>
+                                    <p> —&nbsp; 12°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Tue 13</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/cloudy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>24°C</h2>
+                                    <p> —&nbsp; 16°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Wed 14</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/rainy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>22°C</h2>
+                                    <p> —&nbsp; 18°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Thu 15</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/rainy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>20°C</h2>
+                                    <p> —&nbsp; 15°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Fri 16</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/cloudy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>24°C</h2>
+                                    <p> —&nbsp; 18°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-past">
+                            <p>Sat 17</p>
+                            <div class="weather-past-side">
+                                <div class="weather-image-past">
+                                    <img src="images/cloudy.png" alt="" height="90px" width="100px">
+                                </div>
+                                <div class="weather-past-status">
+                                    <h2>24°C</h2>
+                                    <p> —&nbsp; 18°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blank"></div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div class="sidebar-weather-top">
-            <img src="images/cloudy.png" alt="">
-            <p>18°C</p>
-        </div>
-        <div class="line"></div>
-        <div class="sidebar-date">
-            <p>Date Today</p>
-            <div class="sidebar-day">
-                <h2>Monday</h2>
-                <p>15.30</p>
-            </div>
-        </div>
-        <div class="sidebar-detail-weather">
-            <p>Detail Weather</p>
-            <div class="weather-status">
-                <i class="fa-solid fa-cloud"></i>
-                <p>Mostly Cloudly</p>
-            </div>
-            <div class="weather-status">
-                <i class="fa-solid fa-water"></i>
-                <p>Humidity - 77%</p>
-            </div>
-            <div class="weather-status">
-                <i class="fa-solid fa-wind"></i>
-                <p>Wind - 6km/h</p>
-            </div>
-        </div>
+
     </div>
-    <section class="main">
-        <div class="row1">
-            <div class="other-city col-span-6">
-                <div class="city-row1">
-                    <p class="title-card">Other Large Cities</p>
-                    <div class="change-city-button">
-                        <a href="#" class="arrowUp">
-                            <i class="fa-solid fa-arrow-up"></i>
-                        </a>
-                        <a href="#" class="arrowDown">
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="city-display">
-                    <img src="images/cloudy.png" alt="" height="60px" width="60px">
-                    <div class="city-name">
-                        <h2>Malang</h2>
-                        <p>Malang, Jawa Timur</p>
-                    </div>
-                    <div class="city-weather">
-                        <h2>18°C</h2>
-                        <div class="city-wind">
-                            <i class="fa-solid fa-wind"></i>
-                            <p>Wind - 6 km/h</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="city-display">
-                    <img src="images/rainy.png" alt="" height="60px" width="60px">
-                    <div class="city-name">
-                        <h2>Sidoarjo</h2>
-                        <p>Sidoarjo, Jawa Timur</p>
-                    </div>
-                    <div class="city-weather">
-                        <h2>22°C</h2>
-                        <div class="city-wind">
-                            <i class="fa-solid fa-wind"></i>
-                            <p>Wind - 15 km/h</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="report-weather col-span-5">
-                <div class="report-row1">
-                    <i class="fa-regular fa-comment" style="color: white; font-size: 24px;"></i>
-                    <p>Wrong weather forecast?</p>
-                </div>
-                <div class="report-row2">
-                    <p>If the weather report in your city is inaccurate, you can report your current weather conditions to us. <br> </p>
-                    <p>More data means more accurate forecasts. Your observations help improve forecasts.</p>
-                </div>
-                <a href="#">Report the weather</a>
-            </div>
-        </div>
-    </section>
+
+
 
     <script src="script.js"></script>
 </body>
