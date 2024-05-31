@@ -40,7 +40,7 @@ async function fetchData(position) {
     //Fetch API Geocoding Open Meteo
     const responseGeocoding =
       await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
-    `);
+      `);
     const responseGeocodingJson = await responseGeocoding.json();
 
     //Fetch API Open Meteo 7 days integrate with current location user
@@ -360,7 +360,7 @@ async function fetchData(position) {
       },
     };
     let currentWeatherCode = responseOpenMeteoJson.current.weather_code;
-    let isDayTime = true;
+    let isDayTime = null;
 
     let getCurrentWeatherCode = weatherCode[currentWeatherCode];
     let weatherIcon = isDayTime
@@ -375,10 +375,60 @@ async function fetchData(position) {
       "Humidity - " + responseOpenMeteoJson.current.relative_humidity_2m + "%";
     document.getElementById("wind-weather-status").innerHTML =
       "Wind - " + responseOpenMeteoJson.current.wind_speed_10m + "km/h";
+
+    //Assing API Value to Week Weather in 7 Days Section (Current Location)
+    //Today
     
-      //Assing API Value to Week Weather in 7 Days Section (Current Location)
-      
+
+    //History
+    let HistoryWeatherCode = responseHistoryCurrent.daily.weather_code;
+    let isDayTime2 = true;
+
+    document.getElementById(
+      `weather-week`
+    ).innerHTML = `<div class="weather-today">
+      <p>Today</p>
+      <div class="weather-today-side">
+          <img src="${weatherIcon}" alt="" height="100px" width="110px" id="img-weather-today">
+          <div class="weather-today-status">
+              <h2>${responseOpenMeteoJson.current.temperature_2m + "°C"}</h2>
+              <p>${weatherDescription}</p>
+              <div class="today-humidity">
+                  <i class="fa-solid fa-water"></i>
+                  <p>${"Humidity - " + responseOpenMeteoJson.current.relative_humidity_2m + "%"}</p>
+              </div>
+              <div class="today-wind">
+                  <i class="fa-solid fa-wind"></i>
+                  <p>${"Wind - " + responseOpenMeteoJson.current.wind_speed_10m + "km/h"}</p>
+              </div>
+          </div>
+      </div>
+  </div>`;
+
+    for (let i = 14; i >= 9; i--) {
+      let getHistoryWeatherCode = weatherCode[HistoryWeatherCode[i]];
+      let weatherHistoryIcon = isDayTime2
+        ? getHistoryWeatherCode.day.image
+        : getHistoryWeatherCode.night.image;
+
+      document.getElementById(
+        `weather-week`
+      ).innerHTML += `<div class="weather-past">
+      <p>Mon 12</p>
+      <div class="weather-past-side">
+          <div class="weather-image-past">
+              <img src="${weatherHistoryIcon}" alt="" height="90px" width="100px" id="img-past-1">
+          </div>
+          <div class="weather-past-status">
+              <h2>${responseHistoryCurrent.daily.temperature_2m_max[i] + "°C"}</h2>
+              <p>${"—&nbsp" + responseHistoryCurrent.daily.temperature_2m_min[i] + "°C"}</p>
+          </div>
+      </div>
+  </div>`;
     }
+
+    document.getElementById(`weather-week`).innerHTML += `<div class="blank"></div>`;
+  }
 }
 
 fetchData();
