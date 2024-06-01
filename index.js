@@ -448,4 +448,38 @@ function getTimeFromDateTime(dateTime) {
   return hours + ":" + minutes;
 }
 
-
+async function searchBar() {
+    let searchCity = document.getElementById("search-input").value;
+  
+    if (!searchCity) {
+      console.error("Search city is empty");
+      return;
+    }
+  
+    try {
+      // Fetch API Open Weather Map for Latitude and Longitude
+      const coordOpenWeather = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${searchCity}&appid=224409a97cfb66a9475367480e6ac1e2`
+      );
+      const coordOpenWeatherJson = await coordOpenWeather.json();
+      
+      let lat = coordOpenWeatherJson.city.coord.lat;
+      let lon = coordOpenWeatherJson.city.coord.lon;
+  
+      console.log(lat, lon);
+    } catch (error) {
+      console.error("Failed to fetch data", error);
+    }
+  
+  }
+  
+  document
+    .getElementById("search-input")
+    .addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        searchBar();
+      }
+    });
+  
+  searchBar();
