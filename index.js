@@ -1,12 +1,3 @@
-//Test Fetch API
-// async function fetchData(){
-//     const searchCity = 'surakarta'
-//     const apiKey = '224409a97cfb66a9475367480e6ac1e2'
-//     const responseOpenWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}`)
-//     const responseOpenWeatherJson = await responseOpenWeather.json()
-//     console.log(responseOpenWeatherJson, "<< response Open Weather Json")
-// }
-
 function getUserLocation() {
   navigator.geolocation.getCurrentPosition(fetchData, (error) => {
     console.error("Error Getting Location: ", error);
@@ -30,14 +21,7 @@ async function fetchData(position) {
     const responseOpenMeteoJson = await responseOpenMeteo.json();
     console.log(responseOpenMeteoJson, "<< Response Open Meteo Json");
 
-    //Fetch API Openweather Current
-    const currentOpenWeather = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=224409a97cfb66a9475367480e6ac1e2`
-    );
-    const currentOpenWeatherJson = await currentOpenWeather.json();
-    console.log(currentOpenWeatherJson, "<< Response Current Weather");
-
-    //Fetch API Geocoding Open Meteo
+    //Fetch API Geocoding Open Weather
     const responseGeocoding =
       await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
       `);
@@ -45,7 +29,7 @@ async function fetchData(position) {
 
     //Fetch API Open Meteo 7 days integrate with current location user
     const historyCurrentUser = await fetch(
-      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=2024-05-15&end_date=2024-05-29&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FBangkok`
+      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=2024-05-16&end_date=2024-05-30&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
     );
     const responseHistoryCurrent = await historyCurrentUser.json();
     console.log(responseHistoryCurrent, "<< Response History Current");
@@ -360,7 +344,7 @@ async function fetchData(position) {
       },
     };
     let currentWeatherCode = responseOpenMeteoJson.current.weather_code;
-    let isDayTime = null;
+    let isDayTime = responseOpenMeteoJson.current.is_day == 1;
 
     let getCurrentWeatherCode = weatherCode[currentWeatherCode];
     let weatherIcon = isDayTime
@@ -369,6 +353,7 @@ async function fetchData(position) {
     let weatherDescription = isDayTime
       ? getCurrentWeatherCode.day.description
       : getCurrentWeatherCode.night.description;
+
     document.getElementById("img-sidebar-weather-top").src = weatherIcon;
     document.getElementById("p-weather-status").innerHTML = weatherDescription;
     document.getElementById("humidity-weather-status").innerHTML =
@@ -378,7 +363,6 @@ async function fetchData(position) {
 
     //Assing API Value to Week Weather in 7 Days Section (Current Location)
     //Today
-    
 
     //History
     let HistoryWeatherCode = responseHistoryCurrent.daily.weather_code;
@@ -395,39 +379,62 @@ async function fetchData(position) {
               <p>${weatherDescription}</p>
               <div class="today-humidity">
                   <i class="fa-solid fa-water"></i>
-                  <p>${"Humidity - " + responseOpenMeteoJson.current.relative_humidity_2m + "%"}</p>
+                  <p>${
+                    "Humidity - " +
+                    responseOpenMeteoJson.current.relative_humidity_2m +
+                    "%"
+                  }</p>
               </div>
               <div class="today-wind">
                   <i class="fa-solid fa-wind"></i>
-                  <p>${"Wind - " + responseOpenMeteoJson.current.wind_speed_10m + "km/h"}</p>
+                  <p>${
+                    "Wind - " +
+                    responseOpenMeteoJson.current.wind_speed_10m +
+                    "km/h"
+                  }</p>
               </div>
           </div>
       </div>
   </div>`;
 
+    let startDate = new Date(responseHistoryCurrent.daily.time[14]);
     for (let i = 14; i >= 9; i--) {
       let getHistoryWeatherCode = weatherCode[HistoryWeatherCode[i]];
       let weatherHistoryIcon = isDayTime2
         ? getHistoryWeatherCode.day.image
         : getHistoryWeatherCode.night.image;
 
+      let date = new Date(startDate);
+      date.setDate(date.getDate() - (14 - i));
+      let dayName = days[date.getDay()];
+      let dayNumber = date.getDate();
+      let shortDayName = dayName.substring(0, 3);
+
       document.getElementById(
         `weather-week`
       ).innerHTML += `<div class="weather-past">
-      <p>Mon 12</p>
+      <p>${shortDayName} ${dayNumber}</p>
       <div class="weather-past-side">
           <div class="weather-image-past">
               <img src="${weatherHistoryIcon}" alt="" height="90px" width="100px" id="img-past-1">
           </div>
           <div class="weather-past-status">
-              <h2>${responseHistoryCurrent.daily.temperature_2m_max[i] + "°C"}</h2>
-              <p>${"—&nbsp" + responseHistoryCurrent.daily.temperature_2m_min[i] + "°C"}</p>
+              <h2>${
+                responseHistoryCurrent.daily.temperature_2m_max[i] + "°C"
+              }</h2>
+              <p>${
+                "—&nbsp" +
+                responseHistoryCurrent.daily.temperature_2m_min[i] +
+                "°C"
+              }</p>
           </div>
       </div>
   </div>`;
     }
 
-    document.getElementById(`weather-week`).innerHTML += `<div class="blank"></div>`;
+    document.getElementById(
+      `weather-week`
+    ).innerHTML += `<div class="blank"></div>`;
   }
 }
 
@@ -440,3 +447,5 @@ function getTimeFromDateTime(dateTime) {
   var minutes = date.getMinutes().toString().padStart(2, "0");
   return hours + ":" + minutes;
 }
+
+
