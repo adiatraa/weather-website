@@ -540,6 +540,27 @@ svg{
     padding: 1%;
 }
 
+.splide__arrow {
+    margin: 50px 215px;
+    font-size: 19px;
+}
+
+.splide__arrow--prev {
+    background: white !important;
+    border: 1px solid black !important;
+}
+
+.splide__arrow--next {
+    padding: 10px;
+    background: black !important;
+    border: 1px solid white !important;
+    color: white !important;
+}
+
+.splide__arrow--next svg {
+    fill: white !important;
+}
+
 /* Col Span */
 .col-span-6{
     grid-column: span 6 / span 6;

@@ -851,8 +851,8 @@ async function searchBar() {
       </div>
   </div>`;
 
-  //Past Section
-  let startDate = new Date(historyWeatherJson.daily.time[14]);
+    //Past Section
+    let startDate = new Date(historyWeatherJson.daily.time[14]);
     for (let i = 14; i >= 9; i--) {
       let getHistoryWeatherCode = weatherCode[HistoryWeatherSearchCode[i]];
       let weatherHistoryIcon = isDayTime2
@@ -874,13 +874,9 @@ async function searchBar() {
               <img src="${weatherHistoryIcon}" alt="" height="90px" width="100px" id="img-past-1">
           </div>
           <div class="weather-past-status">
-              <h2>${
-                historyWeatherJson.daily.temperature_2m_max[i] + "°C"
-              }</h2>
+              <h2>${historyWeatherJson.daily.temperature_2m_max[i] + "°C"}</h2>
               <p>${
-                "—&nbsp" +
-                historyWeatherJson.daily.temperature_2m_min[i] +
-                "°C"
+                "—&nbsp" + historyWeatherJson.daily.temperature_2m_min[i] + "°C"
               }</p>
           </div>
       </div>
@@ -890,7 +886,6 @@ async function searchBar() {
     document.getElementById(
       `weather-week`
     ).innerHTML += `<div class="blank"></div>`;
-
   } catch (error) {
     console.error("Failed to fetch data", error);
   }
@@ -906,3 +901,15 @@ document
   });
 
 searchBar();
+
+var splide = new Splide(".splide", {
+    type: "slide",
+    direction: "ttb",
+    perPage: 1,
+    height: "311px",
+    padding: "3%",
+    margin: "4%",
+    pagination: false,
+  });
+  
+  splide.mount();
