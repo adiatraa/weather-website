@@ -477,7 +477,7 @@ async function searchBar() {
 
     //Fetch API Geocoding Open Weather for City Name and State
     const responseGeocodingSearch =
-      await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
+      await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
     `);
     const responseGeocodingSearchJson = await responseGeocodingSearch.json();
 
