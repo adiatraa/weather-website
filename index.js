@@ -1,3 +1,8 @@
+document.getElementById('toggle-label').addEventListener('click', function() {
+  document.querySelector('.toggle-display').classList.toggle('toggled');
+  document.body.classList.toggle('dark-theme');
+});
+
 function getUserLocation() {
   navigator.geolocation.getCurrentPosition(fetchData, (error) => {
     console.error("Error Getting Location: ", error);
@@ -778,11 +783,11 @@ async function searchBar() {
       96: {
         day: {
           description: "Light Thunderstorms With Hail",
-          image: "http://openweathermap.org/img/wn/11d@2x.png",
+          image: "images/weather-assets/thunderstorm.png",
         },
         night: {
           description: "Light Thunderstorms With Hail",
-          image: "http://openweathermap.org/img/wn/11n@2x.png",
+          image: "images/weather-assets/thunderstorm.png",
         },
       },
       99: {
