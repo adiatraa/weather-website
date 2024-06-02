@@ -24,6 +24,12 @@
     --button-text-color: #ffffff;
     --weather-today-bg-color: #ffffff;
     --weather-status-bg-color: #E7EFFD;
+    --native-splide-bg-color-prev: white;
+    --native-splide-border-color-prev: black;
+    --native-splide-arrow-prev: black;
+    --native-splide-bg-color-next: #292929;
+    --native-splide-border-color-next: #292929;
+    --native-splide-arrow-next: white;
 }
 
 .dark-theme {
@@ -51,6 +57,12 @@
     --button-text-color: #ffffff;
     --weather-today-bg-color: #292929;
     --weather-status-bg-color: #3a3a3a;
+    --native-splide-bg-color-next: #292929;
+    --native-splide-border-color-next: white;
+    --native-splide-arrow-next: white;
+    --native-splide-bg-color-prev: white;
+    --native-splide-border-color-prev: black;
+    --native-splide-arrow-prev: black;
 }
 
 *, html {
@@ -587,19 +599,23 @@ svg {
 }
 
 .splide__arrow--prev {
-    background: var(--native-bg-color) !important;
-    border: 1px solid var(--native-font-color) !important;
+    background: var(--native-splide-bg-color-prev) !important;
+    border: 1px solid var(--native-splide-border-color-prev) !important;
 }
 
 .splide__arrow--next {
     padding: 10px;
-    background: var(--native-font-color) !important;
-    border: 1px solid var(--native-bg-color) !important;
-    color: var(--native-bg-color) !important;
+    background: var(--native-splide-bg-color-next) !important;
+    border: 1px solid var(--native-splide-border-color-next) !important;
+    color: var(--native-splide-arrow-next) !important;
 }
 
 .splide__arrow--next svg {
-    fill: var(--native-bg-color) !important;
+    fill: var(--native-splide-arrow-next) !important;
+}
+
+.splide__arrow--prev svg {
+    fill: var(--native-splide-arrow-prev) !important;
 }
 
 /* Col Span */
