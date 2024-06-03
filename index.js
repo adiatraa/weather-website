@@ -1,6 +1,6 @@
-document.getElementById('toggle-label').addEventListener('click', function() {
-  document.querySelector('.toggle-display').classList.toggle('toggled');
-  document.body.classList.toggle('dark-theme');
+document.getElementById("toggle-label").addEventListener("click", function () {
+  document.querySelector(".toggle-display").classList.toggle("toggled");
+  document.body.classList.toggle("dark-theme");
 });
 
 function getUserLocation() {
@@ -41,10 +41,15 @@ async function fetchData(position) {
     document.getElementById("loading").style.display = "none";
 
     //Assign Value in Navbar
+    if (responseGeocodingJson[0].state === undefined) {
+      document.getElementById("p-nav-loc-name").innerHTML = "";
+    } else {
+      document.getElementById("p-nav-loc-name").innerHTML =
+        responseGeocodingJson[0].state;
+    }
+
     document.getElementById("h2-nav-loc-name").innerHTML =
       responseGeocodingJson[0].name;
-    document.getElementById("p-nav-loc-name").innerHTML =
-      responseGeocodingJson[0].state;
 
     //Assign API Value to Sidebar
     document.getElementById("temp-sidebar").innerHTML =
@@ -494,10 +499,15 @@ async function searchBar() {
     console.log(currentWeatherSearchJson, "<< currentWeatherSearchJson");
 
     //Assign Value in Navbar
+    if (responseGeocodingSearchJson[0].state === undefined) {
+      document.getElementById("p-nav-loc-name").innerHTML = "";
+    } else {
+      document.getElementById("p-nav-loc-name").innerHTML =
+        responseGeocodingSearchJson[0].state;
+    }
+
     document.getElementById("h2-nav-loc-name").innerHTML =
       responseGeocodingSearchJson[0].name;
-    document.getElementById("p-nav-loc-name").innerHTML =
-      responseGeocodingSearchJson[0].state;
 
     //Assign API Value to Sidebar
     document.getElementById("temp-sidebar").innerHTML =
@@ -907,399 +917,423 @@ document
 
 searchBar();
 
-async function otherLargeCities(){
-    let weatherCode = {
-        0: {
-          day: {
-            description: "Sunny",
-            image: "images/weather-assets/sunny.png",
-          },
-          night: {
-            description: "Clear",
-            image: "images/weather-assets/clear.png",
-          },
-        },
-        1: {
-          day: {
-            description: "Mainly Sunny",
-            image: "images/weather-assets/sunny.png",
-          },
-          night: {
-            description: "Mainly Clear",
-            image: "images/weather-assets/clear.png",
-          },
-        },
-        2: {
-          day: {
-            description: "Partly Cloudy",
-            image: "images/weather-assets/cloudySun.png",
-          },
-          night: {
-            description: "Partly Cloudy",
-            image: "images/weather-assets/cloudyNight.png",
-          },
-        },
-        3: {
-          day: {
-            description: "Cloudy",
-            image: "images/weather-assets/cloudy.png",
-          },
-          night: {
-            description: "Cloudy",
-            image: "images/weather-assets/cloudyNight.png",
-          },
-        },
-        45: {
-          day: {
-            description: "Foggy",
-            image: "http://openweathermap.org/img/wn/50d@2x.png",
-          },
-          night: {
-            description: "Foggy",
-            image: "http://openweathermap.org/img/wn/50n@2x.png",
-          },
-        },
-        48: {
-          day: {
-            description: "Rime Fog",
-            image: "http://openweathermap.org/img/wn/50d@2x.png",
-          },
-          night: {
-            description: "Rime Fog",
-            image: "http://openweathermap.org/img/wn/50n@2x.png",
-          },
-        },
-        51: {
-          day: {
-            description: "Light Drizzle",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Light Drizzle",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        53: {
-          day: {
-            description: "Drizzle",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Drizzle",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        55: {
-          day: {
-            description: "Heavy Drizzle",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Heavy Drizzle",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        56: {
-          day: {
-            description: "Light Freezing Drizzle",
-            image: "http://openweathermap.org/img/wn/09d@2x.png",
-          },
-          night: {
-            description: "Light Freezing Drizzle",
-            image: "http://openweathermap.org/img/wn/09n@2x.png",
-          },
-        },
-        57: {
-          day: {
-            description: "Freezing Drizzle",
-            image: "http://openweathermap.org/img/wn/09d@2x.png",
-          },
-          night: {
-            description: "Freezing Drizzle",
-            image: "http://openweathermap.org/img/wn/09n@2x.png",
-          },
-        },
-        61: {
-          day: {
-            description: "Light Rain",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Light Rain",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        63: {
-          day: {
-            description: "Rain",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Rain",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        65: {
-          day: {
-            description: "Heavy Rain",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Heavy Rain",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        66: {
-          day: {
-            description: "Light Freezing Rain",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Light Freezing Rain",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        67: {
-          day: {
-            description: "Freezing Rain",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Freezing Rain",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        71: {
-          day: {
-            description: "Light Snow",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Light Snow",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        73: {
-          day: {
-            description: "Snow",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Snow",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        75: {
-          day: {
-            description: "Heavy Snow",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Heavy Snow",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        77: {
-          day: {
-            description: "Snow Grains",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Snow Grains",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        80: {
-          day: {
-            description: "Light Showers",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Light Showers",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        81: {
-          day: {
-            description: "Showers",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Showers",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        82: {
-          day: {
-            description: "Heavy Showers",
-            image: "images/weather-assets/rainSun.png",
-          },
-          night: {
-            description: "Heavy Showers",
-            image: "images/weather-assets/rainNight.png",
-          },
-        },
-        85: {
-          day: {
-            description: "Light Snow Showers",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Light Snow Showers",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        86: {
-          day: {
-            description: "Snow Showers",
-            image: "images/weather-assets/snowSun.png",
-          },
-          night: {
-            description: "Snow Showers",
-            image: "images/weather-assets/snowNight.png",
-          },
-        },
-        95: {
-          day: {
-            description: "Thunderstorm",
-            image: "images/weather-assets/thunderstorm.png",
-          },
-          night: {
-            description: "Thunderstorm",
-            image: "images/weather-assets/thunderstorm.png",
-          },
-        },
-        96: {
-          day: {
-            description: "Light Thunderstorms With Hail",
-            image: "http://openweathermap.org/img/wn/11d@2x.png",
-          },
-          night: {
-            description: "Light Thunderstorms With Hail",
-            image: "http://openweathermap.org/img/wn/11n@2x.png",
-          },
-        },
-        99: {
-          day: {
-            description: "Thunderstorm With Hail",
-            image: "http://openweathermap.org/img/wn/11d@2x.png",
-          },
-          night: {
-            description: "Thunderstorm With Hail",
-            image: "http://openweathermap.org/img/wn/11n@2x.png",
-          },
-        },
-      };
-  
-    // --- Surabaya --- //
-    //Fetch API Current
-    const currentWeatherSurabaya = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-7.2492&longitude=112.7508&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`);
-    const currentWeatherSurabayaJson = await currentWeatherSurabaya.json();
+async function otherLargeCities() {
+  let weatherCode = {
+    0: {
+      day: {
+        description: "Sunny",
+        image: "images/weather-assets/sunny.png",
+      },
+      night: {
+        description: "Clear",
+        image: "images/weather-assets/clear.png",
+      },
+    },
+    1: {
+      day: {
+        description: "Mainly Sunny",
+        image: "images/weather-assets/sunny.png",
+      },
+      night: {
+        description: "Mainly Clear",
+        image: "images/weather-assets/clear.png",
+      },
+    },
+    2: {
+      day: {
+        description: "Partly Cloudy",
+        image: "images/weather-assets/cloudySun.png",
+      },
+      night: {
+        description: "Partly Cloudy",
+        image: "images/weather-assets/cloudyNight.png",
+      },
+    },
+    3: {
+      day: {
+        description: "Cloudy",
+        image: "images/weather-assets/cloudy.png",
+      },
+      night: {
+        description: "Cloudy",
+        image: "images/weather-assets/cloudyNight.png",
+      },
+    },
+    45: {
+      day: {
+        description: "Foggy",
+        image: "http://openweathermap.org/img/wn/50d@2x.png",
+      },
+      night: {
+        description: "Foggy",
+        image: "http://openweathermap.org/img/wn/50n@2x.png",
+      },
+    },
+    48: {
+      day: {
+        description: "Rime Fog",
+        image: "http://openweathermap.org/img/wn/50d@2x.png",
+      },
+      night: {
+        description: "Rime Fog",
+        image: "http://openweathermap.org/img/wn/50n@2x.png",
+      },
+    },
+    51: {
+      day: {
+        description: "Light Drizzle",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Light Drizzle",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    53: {
+      day: {
+        description: "Drizzle",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Drizzle",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    55: {
+      day: {
+        description: "Heavy Drizzle",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Heavy Drizzle",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    56: {
+      day: {
+        description: "Light Freezing Drizzle",
+        image: "http://openweathermap.org/img/wn/09d@2x.png",
+      },
+      night: {
+        description: "Light Freezing Drizzle",
+        image: "http://openweathermap.org/img/wn/09n@2x.png",
+      },
+    },
+    57: {
+      day: {
+        description: "Freezing Drizzle",
+        image: "http://openweathermap.org/img/wn/09d@2x.png",
+      },
+      night: {
+        description: "Freezing Drizzle",
+        image: "http://openweathermap.org/img/wn/09n@2x.png",
+      },
+    },
+    61: {
+      day: {
+        description: "Light Rain",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Light Rain",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    63: {
+      day: {
+        description: "Rain",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Rain",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    65: {
+      day: {
+        description: "Heavy Rain",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Heavy Rain",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    66: {
+      day: {
+        description: "Light Freezing Rain",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Light Freezing Rain",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    67: {
+      day: {
+        description: "Freezing Rain",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Freezing Rain",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    71: {
+      day: {
+        description: "Light Snow",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Light Snow",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    73: {
+      day: {
+        description: "Snow",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Snow",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    75: {
+      day: {
+        description: "Heavy Snow",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Heavy Snow",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    77: {
+      day: {
+        description: "Snow Grains",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Snow Grains",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    80: {
+      day: {
+        description: "Light Showers",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Light Showers",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    81: {
+      day: {
+        description: "Showers",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Showers",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    82: {
+      day: {
+        description: "Heavy Showers",
+        image: "images/weather-assets/rainSun.png",
+      },
+      night: {
+        description: "Heavy Showers",
+        image: "images/weather-assets/rainNight.png",
+      },
+    },
+    85: {
+      day: {
+        description: "Light Snow Showers",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Light Snow Showers",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    86: {
+      day: {
+        description: "Snow Showers",
+        image: "images/weather-assets/snowSun.png",
+      },
+      night: {
+        description: "Snow Showers",
+        image: "images/weather-assets/snowNight.png",
+      },
+    },
+    95: {
+      day: {
+        description: "Thunderstorm",
+        image: "images/weather-assets/thunderstorm.png",
+      },
+      night: {
+        description: "Thunderstorm",
+        image: "images/weather-assets/thunderstorm.png",
+      },
+    },
+    96: {
+      day: {
+        description: "Light Thunderstorms With Hail",
+        image: "http://openweathermap.org/img/wn/11d@2x.png",
+      },
+      night: {
+        description: "Light Thunderstorms With Hail",
+        image: "http://openweathermap.org/img/wn/11n@2x.png",
+      },
+    },
+    99: {
+      day: {
+        description: "Thunderstorm With Hail",
+        image: "http://openweathermap.org/img/wn/11d@2x.png",
+      },
+      night: {
+        description: "Thunderstorm With Hail",
+        image: "http://openweathermap.org/img/wn/11n@2x.png",
+      },
+    },
+  };
 
-    let SurabayaWeatherCode = currentWeatherSurabayaJson.current.weather_code;
-    let isDayTimeSurabaya = currentWeatherSurabayaJson.current.is_day == 1;
+  // --- Surabaya --- //
+  //Fetch API Current
+  const currentWeatherSurabaya = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=-7.2492&longitude=112.7508&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+  );
+  const currentWeatherSurabayaJson = await currentWeatherSurabaya.json();
 
-    //Fetch API Geocoding Open Weather
-    const responseSurabaya =
-      await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-7.2492&lon=112.7508&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
+  let SurabayaWeatherCode = currentWeatherSurabayaJson.current.weather_code;
+  let isDayTimeSurabaya = currentWeatherSurabayaJson.current.is_day == 1;
+
+  //Fetch API Geocoding Open Weather
+  const responseSurabaya =
+    await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-7.2492&lon=112.7508&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
       `);
-    const responseSurabayaJson = await responseSurabaya.json();
+  const responseSurabayaJson = await responseSurabaya.json();
 
-    let getSurabayaWeatherCode = weatherCode[SurabayaWeatherCode];
-      let surabayaIcon = isDayTimeSurabaya
-        ? getSurabayaWeatherCode.day.image
-        : getSurabayaWeatherCode.night.image;
+  let getSurabayaWeatherCode = weatherCode[SurabayaWeatherCode];
+  let surabayaIcon = isDayTimeSurabaya
+    ? getSurabayaWeatherCode.day.image
+    : getSurabayaWeatherCode.night.image;
 
-    document.getElementById("big-city-img-1").src = surabayaIcon;
-    document.getElementById("big-city-name-1").innerHTML = responseSurabayaJson[0].name;
-    document.getElementById("big-city-state-1").innerHTML = responseSurabayaJson[0].state;
-    document.getElementById("big-city-temp-1").innerHTML = currentWeatherSurabayaJson.current.temperature_2m + "°C";
-    document.getElementById("big-city-wind-1").innerHTML = "Wind - " + currentWeatherSurabayaJson.current.wind_speed_10m + "km/h";
+  document.getElementById("big-city-img-1").src = surabayaIcon;
+  document.getElementById("big-city-name-1").innerHTML =
+    responseSurabayaJson[0].name;
+  document.getElementById("big-city-state-1").innerHTML =
+    responseSurabayaJson[0].state;
+  document.getElementById("big-city-temp-1").innerHTML =
+    currentWeatherSurabayaJson.current.temperature_2m + "°C";
+  document.getElementById("big-city-wind-1").innerHTML =
+    "Wind - " + currentWeatherSurabayaJson.current.wind_speed_10m + "km/h";
 
-    // --- Padang --- //
-    //Fetch API Current
-    const currentWeatherPadang = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-0.9492&longitude=100.3543&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`);
-    const currentWeatherPadangJson = await currentWeatherPadang.json();
+  // --- Padang --- //
+  //Fetch API Current
+  const currentWeatherPadang = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=-0.9492&longitude=100.3543&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+  );
+  const currentWeatherPadangJson = await currentWeatherPadang.json();
 
-    let PadangWeatherCode = currentWeatherPadangJson.current.weather_code;
-    let isDayTimePadang = currentWeatherPadangJson.current.is_day == 1;
+  let PadangWeatherCode = currentWeatherPadangJson.current.weather_code;
+  let isDayTimePadang = currentWeatherPadangJson.current.is_day == 1;
 
-    //Fetch API Geocoding Open Weather
-    const responsePadang =
-      await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-0.9492&lon=100.3543&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
+  //Fetch API Geocoding Open Weather
+  const responsePadang =
+    await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-0.9492&lon=100.3543&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
       `);
-    const responsePadangJson = await responsePadang.json();
-    let getPadangWeatherCode = weatherCode[PadangWeatherCode];
-      let padangIcon = isDayTimePadang
-        ? getPadangWeatherCode.day.image
-        : getPadangWeatherCode.night.image;
+  const responsePadangJson = await responsePadang.json();
+  let getPadangWeatherCode = weatherCode[PadangWeatherCode];
+  let padangIcon = isDayTimePadang
+    ? getPadangWeatherCode.day.image
+    : getPadangWeatherCode.night.image;
 
-    document.getElementById("big-city-img-2").src = padangIcon;
-    document.getElementById("big-city-name-2").innerHTML = responsePadangJson[0].name;
-    document.getElementById("big-city-state-2").innerHTML = responsePadangJson[0].state;
-    document.getElementById("big-city-temp-2").innerHTML = currentWeatherPadangJson.current.temperature_2m + "°C";
-    document.getElementById("big-city-wind-2").innerHTML = "Wind - " + currentWeatherPadangJson.current.wind_speed_10m + "km/h";
+  document.getElementById("big-city-img-2").src = padangIcon;
+  document.getElementById("big-city-name-2").innerHTML =
+    responsePadangJson[0].name;
+  document.getElementById("big-city-state-2").innerHTML =
+    responsePadangJson[0].state;
+  document.getElementById("big-city-temp-2").innerHTML =
+    currentWeatherPadangJson.current.temperature_2m + "°C";
+  document.getElementById("big-city-wind-2").innerHTML =
+    "Wind - " + currentWeatherPadangJson.current.wind_speed_10m + "km/h";
 
-    // --- Cirebon --- //
-    //Fetch API Current
-    const currentWeatherCirebon = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-6.7063&longitude=108.557&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`);
-    const currentWeatherCirebonJson = await currentWeatherCirebon.json();
+  // --- Cirebon --- //
+  //Fetch API Current
+  const currentWeatherCirebon = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=-6.7063&longitude=108.557&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+  );
+  const currentWeatherCirebonJson = await currentWeatherCirebon.json();
 
-    let CirebonWeatherCode = currentWeatherCirebonJson.current.weather_code;
-    let isDayTimeCirebon = currentWeatherCirebonJson.current.is_day == 1;
+  let CirebonWeatherCode = currentWeatherCirebonJson.current.weather_code;
+  let isDayTimeCirebon = currentWeatherCirebonJson.current.is_day == 1;
 
-    //Fetch API Geocoding Open Weather
-    const responseCirebon =
-      await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-6.7063&lon=108.557&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
+  //Fetch API Geocoding Open Weather
+  const responseCirebon =
+    await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-6.7063&lon=108.557&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
       `);
-    const responseCirebonJson = await responseCirebon.json();
-    let getCirebonWeatherCode = weatherCode[CirebonWeatherCode];
-      let cirebonIcon = isDayTimeCirebon
-        ? getCirebonWeatherCode.day.image
-        : getCirebonWeatherCode.night.image;
+  const responseCirebonJson = await responseCirebon.json();
+  let getCirebonWeatherCode = weatherCode[CirebonWeatherCode];
+  let cirebonIcon = isDayTimeCirebon
+    ? getCirebonWeatherCode.day.image
+    : getCirebonWeatherCode.night.image;
 
-    document.getElementById("big-city-img-3").src = cirebonIcon;
-    document.getElementById("big-city-name-3").innerHTML = responseCirebonJson[0].name;
-    document.getElementById("big-city-state-3").innerHTML = responseCirebonJson[0].state;
-    document.getElementById("big-city-temp-3").innerHTML = currentWeatherCirebonJson.current.temperature_2m + "°C";
-    document.getElementById("big-city-wind-3").innerHTML = "Wind - " + currentWeatherCirebonJson.current.wind_speed_10m + "km/h";
+  document.getElementById("big-city-img-3").src = cirebonIcon;
+  document.getElementById("big-city-name-3").innerHTML =
+    responseCirebonJson[0].name;
+  document.getElementById("big-city-state-3").innerHTML =
+    responseCirebonJson[0].state;
+  document.getElementById("big-city-temp-3").innerHTML =
+    currentWeatherCirebonJson.current.temperature_2m + "°C";
+  document.getElementById("big-city-wind-3").innerHTML =
+    "Wind - " + currentWeatherCirebonJson.current.wind_speed_10m + "km/h";
 
-    // --- Palembang --- //
-    //Fetch API Current
-    const currentWeatherPalembang = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=-2.9167&longitude=104.7458&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`);
-    const currentWeatherPalembangJson = await currentWeatherPalembang.json();
+  // --- Palembang --- //
+  //Fetch API Current
+  const currentWeatherPalembang = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=-2.9167&longitude=104.7458&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+  );
+  const currentWeatherPalembangJson = await currentWeatherPalembang.json();
 
-    let PalembangWeatherCode = currentWeatherCirebonJson.current.weather_code;
-    let isDayTimePalembang = currentWeatherCirebonJson.current.is_day == 1;
+  let PalembangWeatherCode = currentWeatherCirebonJson.current.weather_code;
+  let isDayTimePalembang = currentWeatherCirebonJson.current.is_day == 1;
 
-    //Fetch API Geocoding Open Weather
-    const responsePalembang =
-      await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-2.9167&lon=104.7458&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
+  //Fetch API Geocoding Open Weather
+  const responsePalembang =
+    await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=-2.9167&lon=104.7458&limit=10&appid=224409a97cfb66a9475367480e6ac1e2
       `);
-    const responsePalembangJson = await responsePalembang.json();
-    let getPalembangWeatherCode = weatherCode[PalembangWeatherCode];
-      let palembangIcon = isDayTimePalembang
-        ? getPalembangWeatherCode.day.image
-        : getPalembangWeatherCode.night.image;
+  const responsePalembangJson = await responsePalembang.json();
+  let getPalembangWeatherCode = weatherCode[PalembangWeatherCode];
+  let palembangIcon = isDayTimePalembang
+    ? getPalembangWeatherCode.day.image
+    : getPalembangWeatherCode.night.image;
 
-    document.getElementById("big-city-img-4").src = palembangIcon;
-    document.getElementById("big-city-name-4").innerHTML = responsePalembangJson[0].name;
-    document.getElementById("big-city-state-4").innerHTML = responsePalembangJson[0].state;
-    document.getElementById("big-city-temp-4").innerHTML = currentWeatherPalembangJson.current.temperature_2m + "°C";
-    document.getElementById("big-city-wind-4").innerHTML = "Wind - " + currentWeatherPalembangJson.current.wind_speed_10m + "km/h";
+  document.getElementById("big-city-img-4").src = palembangIcon;
+  document.getElementById("big-city-name-4").innerHTML =
+    responsePalembangJson[0].name;
+  document.getElementById("big-city-state-4").innerHTML =
+    responsePalembangJson[0].state;
+  document.getElementById("big-city-temp-4").innerHTML =
+    currentWeatherPalembangJson.current.temperature_2m + "°C";
+  document.getElementById("big-city-wind-4").innerHTML =
+    "Wind - " + currentWeatherPalembangJson.current.wind_speed_10m + "km/h";
 }
 
-otherLargeCities()
+otherLargeCities();
 
 var splide = new Splide(".splide", {
-    type: "slide",
-    direction: "ttb",
-    perPage: 1,
-    height: "311px",
-    padding: "3%",
-    margin: "4%",
-    pagination: false,
-    rewind: true,
-  });
-  
-  splide.mount();
+  type: "slide",
+  direction: "ttb",
+  perPage: 1,
+  height: "311px",
+  padding: "3%",
+  margin: "4%",
+  pagination: false,
+  rewind: true,
+});
+
+splide.mount();
