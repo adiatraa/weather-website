@@ -12,6 +12,14 @@ function getUserLocation() {
 
 getUserLocation();
 
+//Get Real Time from Device
+function getCurrentTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
 async function fetchData(position) {
   var lat = position?.coords?.latitude;
   var lon = position?.coords?.longitude;
@@ -66,9 +74,14 @@ async function fetchData(position) {
     var d = new Date(responseOpenMeteoJson.current.time);
     var dayName = days[d.getDay()];
     document.getElementById("h2-sidebar-day").innerHTML = dayName;
-    document.getElementById("p-sidebar-day").innerHTML = getTimeFromDateTime(
-      responseOpenMeteoJson.current.time
-    );
+
+    //Get Real Time from Device
+    document.getElementById("p-sidebar-day").innerHTML = getCurrentTime();
+
+    //Update the time in real-time
+    setInterval(() => {
+      document.getElementById("p-sidebar-day").innerHTML = getCurrentTime();
+    }, 1000);
 
     //Icon
     let weatherCode = {
@@ -524,9 +537,13 @@ async function searchBar() {
     var d = new Date(currentWeatherSearchJson.current.time);
     var dayName = days[d.getDay()];
     document.getElementById("h2-sidebar-day").innerHTML = dayName;
-    document.getElementById("p-sidebar-day").innerHTML = getTimeFromDateTime(
-      currentWeatherSearchJson.current.time
-    );
+    //Get Real Time from Device
+    document.getElementById("p-sidebar-day").innerHTML = getCurrentTime();
+
+    //Update the time in real-time
+    setInterval(() => {
+      document.getElementById("p-sidebar-day").innerHTML = getCurrentTime();
+    }, 1000);
 
     //Icon
     let weatherCode = {
