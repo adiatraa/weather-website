@@ -41,19 +41,10 @@ async function fetchData(position) {
 
     //Fetch API Open Meteo 7 days integrate with current location user
 
-    // Get today's date and format it as YYYY-MM-DD
-    let today = new Date();
-    today.setDate(today.getDate() - 1);
-    let endDatePast = today.toISOString().split("T")[0];
-
-    let startDatePast = new Date();
-    startDatePast.setDate(today.getDate() - 14);
-    startDatePast = startDatePast.toISOString().split("T")[0];
-
-    const historyCurrentUser = await fetch(
-      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDatePast}&end_date=${endDatePast}&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
+    const forecastCurrentUser = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FBangkok`
     );
-    const responseHistoryCurrent = await historyCurrentUser.json();
+    const responseForecastCurrent = await forecastCurrentUser.json();
     document.getElementById("loading").style.display = "none";
 
     //Assign Value in Navbar
@@ -395,8 +386,8 @@ async function fetchData(position) {
     //Assing API Value to Week Weather in 7 Days Section (Current Location)
     //Today
 
-    //History
-    let HistoryWeatherCode = responseHistoryCurrent.daily.weather_code;
+    //Forecast
+    let forecastWeatherCode = responseForecastCurrent.daily.weather_code;
     let isDayTime2 = true;
 
     document.getElementById(
@@ -428,15 +419,15 @@ async function fetchData(position) {
       </div>
   </div>`;
 
-    let startDate = new Date(responseHistoryCurrent.daily.time[14]);
-    for (let i = 14; i >= 9; i--) {
-      let getHistoryWeatherCode = weatherCode[HistoryWeatherCode[i]];
-      let weatherHistoryIcon = isDayTime2
-        ? getHistoryWeatherCode.day.image
-        : getHistoryWeatherCode.night.image;
+    let startDate = new Date(responseForecastCurrent.daily.time[0]);
+    for (let i = 1; i < 7; i++) {
+      let getForecastWeatherCode = weatherCode[forecastWeatherCode[i]];
+      let weatherForecastIcon = isDayTime2
+        ? getForecastWeatherCode.day.image
+        : getForecastWeatherCode.night.image;
 
       let date = new Date(startDate);
-      date.setDate(date.getDate() - (14 - i));
+      date.setDate(date.getDate() + i);
       let dayName = days[date.getDay()];
       let dayNumber = date.getDate();
       let shortDayName = dayName.substring(0, 3);
@@ -447,15 +438,15 @@ async function fetchData(position) {
       <p>${shortDayName} ${dayNumber}</p>
       <div class="weather-past-side">
           <div class="weather-image-past">
-              <img src="${weatherHistoryIcon}" alt="" height="90px" width="100px" id="img-past-1">
+              <img src="${weatherForecastIcon}" alt="" height="90px" width="100px" id="img-past-1">
           </div>
           <div class="weather-past-status">
               <h2>${
-                responseHistoryCurrent.daily.temperature_2m_max[i] + "°C"
+                responseForecastCurrent.daily.temperature_2m_max[i] + "°C"
               }</h2>
               <p>${
                 "—&nbsp" +
-                responseHistoryCurrent.daily.temperature_2m_min[i] +
+                responseForecastCurrent.daily.temperature_2m_min[i] +
                 "°C"
               }</p>
           </div>
@@ -499,21 +490,12 @@ async function searchBar() {
 
     console.log(coordOpenWeatherJson);
 
-    //Fetch API Open Meteo History 7 Days
-    // Get today's date and format it as YYYY-MM-DD
-    let today = new Date();
-    today.setDate(today.getDate() - 1);
-    let endDatePast = today.toISOString().split("T")[0];
+    //Fetch API Open Meteo Forecast 7 Days
 
-    let startDatePast = new Date();
-    startDatePast.setDate(today.getDate() - 14);
-    startDatePast = startDatePast.toISOString().split("T")[0];
-
-    const historyWeather = await fetch(
-      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDatePast}&end_date=${endDatePast}&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
+    const forecastWeather = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FBangkok`
     );
-    const historyWeatherJson = await historyWeather.json();
-    console.log(historyWeatherJson, "<< History Weather Json");
+    const forecastWeatherJson = await forecastWeather.json();
 
     //Fetch API Geocoding Open Weather for City Name and State
     const responseGeocodingSearch =
@@ -867,8 +849,8 @@ async function searchBar() {
 
     //Assing API Value to Week Weather in 7 Days Section (Search Input Location)
 
-    //History
-    let HistoryWeatherSearchCode = historyWeatherJson.daily.weather_code;
+    //Forecast
+    let ForecastWeatherSearchCode = forecastWeatherJson.daily.weather_code;
     let isDayTime2 = true;
     //Today Section
     document.getElementById(
@@ -901,15 +883,15 @@ async function searchBar() {
   </div>`;
 
     //Past Section
-    let startDate = new Date(historyWeatherJson.daily.time[14]);
-    for (let i = 14; i >= 9; i--) {
-      let getHistoryWeatherCode = weatherCode[HistoryWeatherSearchCode[i]];
-      let weatherHistoryIcon = isDayTime2
-        ? getHistoryWeatherCode.day.image
-        : getHistoryWeatherCode.night.image;
+    let startDate = new Date(forecastWeatherJson.daily.time[0]);
+    for (let i = 1; i < 7; i++) {
+      let getForecastWeatherCode = weatherCode[ForecastWeatherSearchCode[i]];
+      let weatherForecastIcon = isDayTime2
+        ? getForecastWeatherCode.day.image
+        : getForecastWeatherCode.night.image;
 
       let date = new Date(startDate);
-      date.setDate(date.getDate() - (14 - i));
+      date.setDate(date.getDate() + i);
       let dayName = days[date.getDay()];
       let dayNumber = date.getDate();
       let shortDayName = dayName.substring(0, 3);
@@ -920,12 +902,12 @@ async function searchBar() {
       <p>${shortDayName} ${dayNumber}</p>
       <div class="weather-past-side">
           <div class="weather-image-past">
-              <img src="${weatherHistoryIcon}" alt="" height="90px" width="100px" id="img-past-1">
+              <img src="${weatherForecastIcon}" alt="" height="90px" width="100px" id="img-past-1">
           </div>
           <div class="weather-past-status">
-              <h2>${historyWeatherJson.daily.temperature_2m_max[i] + "°C"}</h2>
+              <h2>${forecastWeatherJson.daily.temperature_2m_max[i] + "°C"}</h2>
               <p>${
-                "—&nbsp" + historyWeatherJson.daily.temperature_2m_min[i] + "°C"
+                "—&nbsp" + forecastWeatherJson.daily.temperature_2m_min[i] + "°C"
               }</p>
           </div>
       </div>
