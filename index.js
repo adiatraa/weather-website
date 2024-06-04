@@ -32,7 +32,6 @@ async function fetchData(position) {
       `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,is_day,weather_code,wind_speed_10m&hourly=temperature_2m&timezone=Asia%2FBangkok`
     );
     const responseOpenMeteoJson = await responseOpenMeteo.json();
-    console.log(responseOpenMeteoJson, "<< Response Open Meteo Json");
 
     //Fetch API Geocoding Open Weather
     const responseGeocoding =
@@ -41,11 +40,20 @@ async function fetchData(position) {
     const responseGeocodingJson = await responseGeocoding.json();
 
     //Fetch API Open Meteo 7 days integrate with current location user
+
+    // Get today's date and format it as YYYY-MM-DD
+    let today = new Date();
+    today.setDate(today.getDate() - 1);
+    let endDatePast = today.toISOString().split("T")[0];
+
+    let startDatePast = new Date();
+    startDatePast.setDate(today.getDate() - 14);
+    startDatePast = startDatePast.toISOString().split("T")[0];
+
     const historyCurrentUser = await fetch(
-      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=2024-05-16&end_date=2024-05-30&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
+      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDatePast}&end_date=${endDatePast}&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
     );
     const responseHistoryCurrent = await historyCurrentUser.json();
-    console.log(responseHistoryCurrent, "<< Response History Current");
     document.getElementById("loading").style.display = "none";
 
     //Assign Value in Navbar
@@ -492,8 +500,17 @@ async function searchBar() {
     console.log(coordOpenWeatherJson);
 
     //Fetch API Open Meteo History 7 Days
+    // Get today's date and format it as YYYY-MM-DD
+    let today = new Date();
+    today.setDate(today.getDate() - 1);
+    let endDatePast = today.toISOString().split("T")[0];
+
+    let startDatePast = new Date();
+    startDatePast.setDate(today.getDate() - 14);
+    startDatePast = startDatePast.toISOString().split("T")[0];
+
     const historyWeather = await fetch(
-      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=2024-05-16&end_date=2024-05-30&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
+      `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDatePast}&end_date=${endDatePast}&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max&timezone=Asia%2FBangkok`
     );
     const historyWeatherJson = await historyWeather.json();
     console.log(historyWeatherJson, "<< History Weather Json");
@@ -1221,7 +1238,7 @@ async function otherLargeCities() {
   // --- Surabaya --- //
   //Fetch API Current
   const currentWeatherSurabaya = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=-7.2492&longitude=112.7508&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+    `https://api.open-meteo.com/v1/forecast?latitude=-7.2492&longitude=112.7508&current=temperature_2m,is_day,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
   );
   const currentWeatherSurabayaJson = await currentWeatherSurabaya.json();
 
@@ -1252,7 +1269,7 @@ async function otherLargeCities() {
   // --- Padang --- //
   //Fetch API Current
   const currentWeatherPadang = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=-0.9492&longitude=100.3543&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+    `https://api.open-meteo.com/v1/forecast?latitude=-0.9492&longitude=100.3543&current=temperature_2m,is_day,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
   );
   const currentWeatherPadangJson = await currentWeatherPadang.json();
 
@@ -1282,7 +1299,7 @@ async function otherLargeCities() {
   // --- Cirebon --- //
   //Fetch API Current
   const currentWeatherCirebon = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=-6.7063&longitude=108.557&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+    `https://api.open-meteo.com/v1/forecast?latitude=-6.7063&longitude=108.557&current=temperature_2m,is_day,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
   );
   const currentWeatherCirebonJson = await currentWeatherCirebon.json();
 
@@ -1312,7 +1329,7 @@ async function otherLargeCities() {
   // --- Palembang --- //
   //Fetch API Current
   const currentWeatherPalembang = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=-2.9167&longitude=104.7458&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
+    `https://api.open-meteo.com/v1/forecast?latitude=-2.9167&longitude=104.7458&current=temperature_2m,is_day,weather_code,wind_speed_10m&timezone=Asia%2FBangkok`
   );
   const currentWeatherPalembangJson = await currentWeatherPalembang.json();
 
